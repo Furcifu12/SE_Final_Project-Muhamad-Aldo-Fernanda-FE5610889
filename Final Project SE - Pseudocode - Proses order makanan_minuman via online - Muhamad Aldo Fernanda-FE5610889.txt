@@ -1,0 +1,45 @@
+//Muhamad Aldo Fernanda - FE5610889
+//Proses order makanan/minuman via online
+
+START
+Display "menus"
+Display "select_menu"
+if "select_menu" == "TRUE"
+    Display "food_menu"
+else
+    Display "drink_menu"
+READ AND WRITE "custom_order" with String
+READ AND WRITE "selected_food" with String
+READ AND WRITE "food_item" with Number
+READ AND WRITE "selected_drink" with String
+READ AND WRITE "drink_item" with Number
+READ AND WRITE "selected_food and selected_drink put order in cart"
+
+if "order_again" == "TRUE"
+    Back to step 5
+else
+    STORE "total_cost" with Calculate ("selected_food"*"food_item"*"price" + "selected_drink"*"drink_item"*"price")
+    Display "cart_content"
+    Display "total_cost"
+
+READ AND WRITE "address_form" with String
+STORE "delivery_fee" with Calculate ("address_form"*"delivery_distance")
+READ AND WRITE "payment_method" with String
+
+Display "payment_method"
+if "payment_method" == "cash"
+    STORE "bills" with Calculate ("total_cost" + "delivery_fee")
+    Display "bills"
+else
+    Display "other_payment_method"
+    STORE "bills" with Calculate ("total_cost" + "delivery_fee")
+    Display "bills"
+
+READ AND WRITE "payment" with String
+if status "payment_process" == "TRUE"
+    Display "order_process"
+else
+    Back to step 29
+
+END
+
